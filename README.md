@@ -16,10 +16,3 @@ usage: ./acc \<mode> \<file> \(\<aspell options>)
 optional:
 <aspell options>  options that are directly passed to aspell
 ```
-
-#known issues
-```
-problems with transposes before strings like:
-   fprintf(1,'nat a problem',ABC','I am not recognized as an erior') QBE'*X;  % no porblem
-
-```
