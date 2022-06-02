@@ -1,0 +1,10 @@
+#!/bin/bash
+#usage: acc <mode> <file> <aspell options>
+#requires: aspell
+if [ $# -lt 2 ];
+then
+echo "Usage: ./acc.sh <mode> <file> (<aspell options>)"
+exit $EINVAL
+fi
+
+cat $2 | perl $1 | aspell $3 list
