@@ -16,3 +16,8 @@ usage: ./acc \<mode> \<file> \(\<aspell options>)
 optional:
 <aspell options>  options that are directly passed to aspell
 ```
+### Assumptions that are made:
+```
+MATLAB:
+transposes only occur on capital letters i.e vectors/matrices are always capitalized  
+```
