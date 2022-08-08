@@ -1,5 +1,5 @@
 # ACC - Aspell Comment Checker
-Comment checking using aspell
+Comment and String/character array checking using aspell
 
 ### Requires:
 ```
