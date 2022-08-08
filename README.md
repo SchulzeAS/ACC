@@ -6,6 +6,7 @@ Comment checking using aspell
 aspell
 perl>=v5
 ```
+### If you desire another mode, feel free to open an issue
 
 ### How it works:
 usage: ./acc \<mode> \<file> \(\<aspell options>)
