@@ -7,6 +7,7 @@ if($input[$count] =~ m/'.*'|%/g ){
     # <stringcode>
     # <comment>
     # where <stringcode> contains singlequote delimited strings
+    # debug = 2 => Production 
     $debug = 2;
     # sometimes there are double singlequotes ('') remove them because
     # they only cause confusion and are not relevant for parsing
