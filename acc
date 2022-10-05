@@ -3,15 +3,19 @@
 #requires: aspell
 if [ $# -lt 2 ];
 then
-echo "Usage: ./acc.sh <mode> <file> (<aspell options>)"
+echo "Usage:                ./acc.sh <mode> \"<file>\" \"(<aspell options>)\"";
+echo "<mode>:               a mode file, typically ending in .pl";
+echo "<file>:               the file you wish to check, or a file-ending specified by \"*.ext\"";
+echo "<aspell options>:     options that are passed directly to aspell, in double quotes";
 exit $EINVAL
 fi
 
-errs=`cat $2 | perl $1 | aspell $3 list`
-[ ! -z "$errs" ] && echo "====== $2 ====="
-
-for i in $errs
+for datei in $2 
 do
-echo $i;
-
+    errs=`cat $datei | perl $1 | aspell $3 list`
+    [ ! -z "$errs" ] && echo "====== $datei ====="
+    for i in $errs
+    do
+    echo $i;
+    done
 done
