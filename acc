@@ -17,4 +17,5 @@ do
     for i in $errs
     do
     echo $i;
+    done
 done
