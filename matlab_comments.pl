@@ -1,5 +1,10 @@
 @input = <STDIN>;
 while ($input[$count] ne "") {
+# DISCLAIMER:
+# THIS WAS CREATED AFTER THE VERSION OF MATLAB WITH STRING SPELLCHECKING, 
+# BY CUTTING OUT CUT AND THERE MIGHT BE VARIABLES LEFT OVER OR SOME THINGS
+# DONE IN WAYS TAKEN THAT DO NOT MAKE SENSE TO ANYONE.
+# also the comments in this file might not check out. 
 if($input[$count] =~ m/'.*'|%/g ){
     #discern between comments or lines that have quotes
     #lines we care about might look like this:
@@ -39,7 +44,7 @@ if($input[$count] =~ m/'.*'|%/g ){
           $comment = @words[1];
           if($debug == 1){print $strings."|".$comment."\n";}
 
-          $input[$count] = $strings." ".$comment;
+          $input[$count] = $comment;
           } elsif ($input[$count] =~ m/^(%.*)/g){# <comment>
           # remove the leading %
           $input[$count] = substr($input[$count],1);
@@ -48,15 +53,7 @@ if($input[$count] =~ m/'.*'|%/g ){
             $input[$count] = substr($input[$count],1);
           }
           if($debug == 1){$input[$count] = "comment        ".$input[$count];}
-      } elsif ($input[$count] =~ m/[^A-Z]'.*?'(?!.*%)/) {# <stringcode>
-          # loop over every nongreedy instance of '..'
-          $temp = "";
-          while($input[$count] =~ /[^A-Z]'.*?'/gp ) {
-          $temp = $temp.${^MATCH}." ";
-          }
-          $input[$count] = $temp."\n";
-          if($debug == 1){$input[$count] = "codestring     ".$input[$count];}
-      } elsif ($input[$count] =~ m/.*%/g) {# <code> <comment>
+      }  elsif ($input[$count] =~ m/.*%/g) {# <code> <comment>
           $input[$count] =~ s/(.*)(%)//g;
           if($debug == 1){$input[$count] = "commentafter   ".$input[$count];}
       }
@@ -67,7 +64,7 @@ if($input[$count] =~ m/'.*'|%/g ){
   # increment the iterator
   $count++;
 }
-# only here for $debug purposes
+# only outputting if $debug == 2, else $debug = 1 then there is debug output 
 if($debug == 2){
   print(@input);
 }
