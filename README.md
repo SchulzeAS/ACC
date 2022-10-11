@@ -17,6 +17,9 @@ usage: ./acc \<mode> \<file> \(\<aspell options>)
 optional:
 <aspell options>  options that are directly passed to aspell
 ```
+
+### typical call: 
+`./acc matlab_comments_strings.pl "$(find . -type f -name "*.m")"`
 ### Assumptions that are made:
 ```
 MATLAB:
