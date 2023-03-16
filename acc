@@ -9,10 +9,12 @@ echo "<file>:               the file you wish to check, or a file-ending specifi
 echo "<aspell options>:     options that are passed directly to aspell, in double quotes";
 exit $EINVAL
 fi
-
-for datei in $2 
+mode=$1
+files=$2
+opts=$3
+for datei in $(find -name "$files")
 do
-    errs=`cat $datei | perl $1 | aspell $3 list`
+    errs=`cat $datei | perl $mode | aspell $opts list`
     [ ! -z "$errs" ] && echo "====== $datei ====="
     for i in $errs
     do
