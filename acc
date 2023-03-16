@@ -15,7 +15,7 @@ opts=$3
 for datei in $(find -name "$files")
 do
     errs=`cat $datei | perl $mode | aspell $opts list`
-    [ ! -z "$errs" ] && echo "====== $datei ====="
+    [ ! -z "$errs" ] && echo "======$datei====="
     for i in $errs
     do
     echo $i;
