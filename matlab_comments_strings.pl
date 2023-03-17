@@ -1,5 +1,8 @@
 @input = <STDIN>;
 while ($input[$count] ne "") {
+# sometimes there are double singlequotes ('') remove them because
+# they only cause confusion and are not relevant for parsing
+$input[$count] =~ s/''//g;
 if($input[$count] =~ m/'.*'|%/g ){
     #discern between comments or lines that have quotes
     #lines we care about might look like this:
@@ -7,11 +10,8 @@ if($input[$count] =~ m/'.*'|%/g ){
     # <stringcode>
     # <comment>
     # where <stringcode> contains singlequote delimited strings
-    # debug = 2 => Production 
+    # debug = 2 => Production
     $debug = 2;
-    # sometimes there are double singlequotes ('') remove them because
-    # they only cause confusion and are not relevant for parsing
-    $input[$count] =~ s/''//g;
     # this is needed, otherwise the next if will never be executed, even
     # though it might match. This might be due to something like persistent
     # captures, but I am not entirely sure.
