@@ -7,17 +7,27 @@ echo "Usage:                ./acc.sh <mode> \"<file>\" \"(<aspell options>)\"";
 echo "<mode>:               a mode file, typically ending in .pl";
 echo "<file>:               the file you wish to check, or a file-ending specified by \"*.ext\"";
 echo "<aspell options>:     options that are passed directly to aspell, in double quotes";
+echo "if called through 'source', ACC_NO_FILES and ACC_NO_ERRORS might be useful to you"
 exit $EINVAL
 fi
+
+
+ACC_NO_ERRORS=""
+ACC_NO_FILES=""
+
 mode=$1
 files=$2
 opts=$3
 for datei in $(find -name "$files")
 do
+  let "ACC_NO_FILES = ACC_NO_FILES + 1"
     errs=`cat $datei | perl $mode | aspell $opts list`
     [ ! -z "$errs" ] && echo "======$datei====="
-    for i in $errs
+
+    # remove duplicates, sort the output and
+    for i in $(echo $errs | tr  " " "\n" | sort -u )
     do
-    echo $i;
+        let "ACC_NO_ERRORS = ACC_NO_ERRORS + 1"
+        echo $i
     done
 done
