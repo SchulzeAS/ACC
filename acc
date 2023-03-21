@@ -40,16 +40,15 @@ do
   for i in "${excludes[@]}"; do
     [[ $file =~ $i ]] && continue 2
   done
-  echo $file
-  #
-  #let "ACC_NO_FILES = ACC_NO_FILES + 1"
-  #  errs=`cat $file | perl $mode | aspell $opts list`
-  #  [ ! -z "$errs" ] && echo "======$file====="
+
+  let "ACC_NO_FILES = ACC_NO_FILES + 1"
+    errs=`cat $file | perl $mode | aspell $opts list`
+    [ ! -z "$errs" ] && echo "======$file====="
 
     # remove duplicates, sort the output and
-  #  for i in $(echo $errs | tr  " " "\n" | sort -u )
-  #  do
-  #      let "ACC_NO_ERRORS = ACC_NO_ERRORS + 1"
-  #      echo $i
-  #  done
+    for i in $(echo $errs | tr  " " "\n" | sort -u )
+    do
+        let "ACC_NO_ERRORS = ACC_NO_ERRORS + 1"
+        echo $i
+    done
 done
